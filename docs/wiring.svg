@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860">
+  <defs>
+    <style>
+      .bg { fill:#f7f9fc; }
+      .box { fill:#ffffff; stroke:#263238; stroke-width:2; rx:12; }
+      .dev { fill:#e8f1fb; stroke:#1e5d9e; stroke-width:2; rx:12; }
+      .pico { fill:#19324d; stroke:#0d1b2a; stroke-width:2; rx:14; }
+      .ptext { fill:#ffffff; font-family:DejaVu Sans, sans-serif; font-weight:bold; }
+      .label { fill:#263238; font-family:DejaVu Sans, sans-serif; font-size:15px; }
+      .small { fill:#546e7a; font-family:DejaVu Sans, sans-serif; font-size:13px; }
+      .pin { fill:#e53935; font-family:DejaVu Sans Mono, monospace; font-size:14px; font-weight:bold; }
+      .gnd { fill:#37474f; font-family:DejaVu Sans Mono, monospace; font-size:14px; font-weight:bold; }
+      .p3v { fill:#c62828; font-family:DejaVu Sans Mono, monospace; font-size:14px; font-weight:bold; }
+      .wire { fill:none; stroke-width:3; stroke-linecap:round; }
+      .sd { stroke:#f9a825; }
+      .i2c { stroke:#2e7d32; }
+      .enc { stroke:#1565c0; }
+      .pwr { stroke:#9e9e9e; }
+      .usb { stroke:#6a1b9a; }
+      .title { fill:#0d1b2a; font-family:DejaVu Sans, sans-serif; font-weight:bold; font-size:30px; }
+      .sub { fill:#546e7a; font-family:DejaVu Sans, sans-serif; font-size:16px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="860"/>
+  <text class="title" x="60" y="58">RP2350 USB CD-RW 模拟光驱 — 接线图</text>
+  <text class="sub" x="60" y="86">Pico 2 (RP2350A) + SPI microSD + SSD1306 I²C OLED + EC11 旋转编码器</text>
+
+  <!-- USB / host -->
+  <rect class="box" x="460" y="120" width="240" height="74"/>
+  <text class="label" x="485" y="150">USB 1.1 Full-Speed</text>
+  <text class="small" x="485" y="174">Pico 2 原生 USB（D+/D−）</text>
+  <path class="wire usb" d="M580 194 L580 235"/>
+  <text class="small" x="592" y="224">USB 设备端口</text>
+
+  <!-- Pico -->
+  <rect class="pico" x="430" y="235" width="300" height="430"/>
+  <text class="ptext" x="470" y="282" font-size="28">Pico 2</text>
+  <text class="ptext" x="470" y="310" font-size="18">RP2350A · 150 MHz</text>
+  <text class="ptext" x="470" y="336" font-size="15">USB FS · 3.3 V logic</text>
+  <text class="ptext" x="470" y="366" font-size="15">SPI0 · I2C1 · GPIO</text>
+
+  <!-- SD -->
+  <rect class="dev" x="70" y="245" width="270" height="220"/>
+  <text class="label" x="92" y="282" font-size="19" font-weight="bold">MicroSD（SPI 模块）</text>
+  <text class="small" x="92" y="308">FAT32 · MBR/GPT 均可</text>
+  <text class="pin" x="92" y="342">SCK  → GP2</text>
+  <text class="pin" x="92" y="370">MOSI → GP3</text>
+  <text class="pin" x="92" y="398">MISO → GP4</text>
+  <text class="pin" x="92" y="426">CS   → GP5</text>
+  <text class="p3v" x="92" y="454">3V3 / GND</text>
+  <path class="wire sd" d="M340 337 L430 337"/>
+  <path class="wire sd" d="M340 365 L430 365"/>
+  <path class="wire sd" d="M340 393 L430 393"/>
+  <path class="wire sd" d="M340 421 L430 421"/>
+  <text class="small" x="355" y="327">SPI0</text>
+
+  <!-- OLED -->
+  <rect class="dev" x="850" y="245" width="280" height="185"/>
+  <text class="label" x="872" y="282" font-size="19" font-weight="bold">SSD1306 OLED 128×64</text>
+  <text class="small" x="872" y="308">I²C 地址 0x3C</text>
+  <text class="pin" x="872" y="342">SDA → GP6</text>
+  <text class="pin" x="872" y="370">SCL → GP7</text>
+  <text class="p3v" x="872" y="398">3V3 / GND</text>
+  <path class="wire i2c" d="M730 337 L850 337"/>
+  <path class="wire i2c" d="M730 365 L850 365"/>
+  <text class="small" x="750" y="326">I2C1 · 400 kHz</text>
+
+  <!-- Encoder -->
+  <rect class="dev" x="70" y="560" width="270" height="205"/>
+  <text class="label" x="92" y="597" font-size="19" font-weight="bold">EC11 旋转编码器</text>
+  <text class="small" x="92" y="622">带上拉，按下接地</text>
+  <text class="pin" x="92" y="654">A  → GP8</text>
+  <text class="pin" x="92" y="682">B  → GP9</text>
+  <text class="pin" x="92" y="710">SW → GP10</text>
+  <text class="gnd" x="92" y="738">C / GND</text>
+  <path class="wire enc" d="M340 661 L430 661"/>
+  <path class="wire enc" d="M340 689 L430 689"/>
+  <path class="wire enc" d="M340 717 L430 717"/>
+
+  <!-- Info boxes right lower -->
+  <rect class="box" x="850" y="470" width="280" height="290"/>
+  <text class="label" x="872" y="506" font-size="18" font-weight="bold">要点</text>
+  <text class="small" x="872" y="535">• SD 卡与 OLED 模块只接 3.3 V</text>
+  <text class="small" x="872" y="560">• SPI 线尽量短；长线降速到 12.5 MHz</text>
+  <text class="small" x="872" y="585">• 编码器 A/B 对调可改变方向</text>
+  <text class="small" x="872" y="610">• 可选卡检测：GP14 → GND</text>
+  <text class="small" x="872" y="635">  并在编译时启用 CDRW_SD_CD=14</text>
+  <text class="small" x="872" y="660">• USB 数据线必须是带数据的线</text>
+  <text class="small" x="872" y="685">• 状态 LED：Pico 2 板载 GP25</text>
+  <text class="small" x="872" y="722">默认固件目标：pico2</text>
+  <text class="small" x="872" y="747">I²C 地址 / 引脚可在 board.h 修改</text>
+
+  <!-- power bus note -->
+  <rect class="box" x="430" y="700" width="300" height="105"/>
+  <text class="label" x="452" y="730" font-size="16">电源</text>
+  <text class="small" x="452" y="754">USB 5 V → Pico VSYS</text>
+  <text class="small" x="452" y="776">Pico 3V3 → OLED / SD / 编码器</text>
+  <text class="small" x="452" y="796">总电流约 80–150 mA</text>
+
+  <text class="small" x="60" y="835">注意：不同 microSD 模块丝印顺序可能不同，请以模块标注为准；不要使用 5 V 电平的 SD 模块。</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <defs>
+    <style>
+      .bg { fill:#f7f9fc; }
+      .box { fill:#ffffff; stroke:#263238; stroke-width:2; rx:12; }
+      .core { fill:#19324d; stroke:#0d1b2a; stroke-width:2; rx:12; }
+      .label { fill:#263238; font-family:DejaVu Sans, sans-serif; font-size:17px; }
+      .small { fill:#546e7a; font-family:DejaVu Sans, sans-serif; font-size:14px; }
+      .white { fill:#ffffff; font-family:DejaVu Sans, sans-serif; font-size:17px; font-weight:bold; }
+      .arrow { stroke:#1e5d9e; stroke-width:3; fill:none; marker-end:url(#arrow); }
+      .arrow2 { stroke:#2e7d32; stroke-width:3; fill:none; marker-end:url(#arrow2); }
+      .title { fill:#0d1b2a; font-family:DejaVu Sans, sans-serif; font-weight:bold; font-size:30px; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1e5d9e"/>
+    </marker>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="620"/>
+  <text class="title" x="55" y="55">数据通路：主机看到的是真正的 SCSI 光驱</text>
+  <text class="small" x="55" y="82">USB Bulk-Only Transport（BOT）→ SCSI MMC → 2048 字节扇区镜像 → FatFs → microSD</text>
+
+  <rect class="box" x="55" y="140" width="205" height="130"/>
+  <text class="label" x="78" y="177" font-weight="bold">主机 PC</text>
+  <text class="small" x="78" y="202">Windows / Linux / macOS</text>
+  <text class="small" x="78" y="225">光驱类驱动</text>
+  <text class="small" x="78" y="248">刻录软件 / 挂载</text>
+
+  <rect class="core" x="335" y="120" width="260" height="300"/>
+  <text class="white" x="360" y="160" font-size="22">RP2350</text>
+  <text class="white" x="360" y="190">TinyUSB</text>
+  <text class="small" x="360" y="215" fill="#cfd8dc">USB 1.1 FS / BOT</text>
+  <text class="white" x="360" y="250">SCSI MMC 引擎</text>
+  <text class="small" x="360" y="275" fill="#cfd8dc">PDT=5 · CD-RW</text>
+  <text class="white" x="360" y="310">媒体层</text>
+  <text class="small" x="360" y="335" fill="#cfd8dc">媒体状态 / 扇区读写</text>
+  <text class="white" x="360" y="370">FatFs + SPI</text>
+  <text class="small" x="360" y="395" fill="#cfd8dc">SD 卡 / .iso / .cdr</text>
+
+  <rect class="box" x="700" y="140" width="220" height="130"/>
+  <text class="label" x="723" y="177" font-weight="bold">microSD</text>
+  <text class="small" x="723" y="202">FAT32</text>
+  <text class="small" x="723" y="225">.ISO 只读光盘</text>
+  <text class="small" x="723" y="248">.CDR 可写光盘 + .meta</text>
+
+  <rect class="box" x="700" y="315" width="220" height="100"/>
+  <text class="label" x="723" y="350" font-weight="bold">SSD1306 OLED</text>
+  <text class="small" x="723" y="376">128×64 / I²C</text>
+  <text class="small" x="723" y="398">状态、菜单、信息</text>
+
+  <rect class="box" x="700" y="455" width="220" height="100"/>
+  <text class="label" x="723" y="490" font-weight="bold">EC11 编码器</text>
+  <text class="small" x="723" y="516">旋转 / 短按 / 长按</text>
+  <text class="small" x="723" y="538">换盘、擦除、重置</text>
+
+  <path class="arrow" d="M260 205 L335 205"/>
+  <path class="arrow" d="M595 205 L700 205"/>
+  <path class="arrow2" d="M595 350 L700 365"/>
+  <path class="arrow2" d="M595 380 L700 505"/>
+
+  <rect class="box" x="55" y="340" width="205" height="210"/>
+  <text class="label" x="78" y="377" font-weight="bold">USB 身份</text>
+  <text class="small" x="78" y="404">Class 08h / SubClass 02h</text>
+  <text class="small" x="78" y="427">Protocol 50h (BOT)</text>
+  <text class="small" x="78" y="450">INQUIRY PDT = 05h</text>
+  <text class="small" x="78" y="473">当前 Profile = CD-RW</text>
+  <text class="small" x="78" y="496">或 CD-ROM（ISO）</text>
+  <text class="small" x="78" y="525">系统显示为 CD 驱动器，</text>
+  <text class="small" x="78" y="545">不是 U 盘。</text>
+
+  <text class="small" x="55" y="600">写入路径：刻录软件发 WRITE(10/12) → 解出 2048 字节用户扇区 → 写入 .CDR → 关闭会话后更新 .meta / TOC 状态。</text>
+</svg>

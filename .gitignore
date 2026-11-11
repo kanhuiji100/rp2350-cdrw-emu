@@ -1,0 +1,9 @@
+build*/
+dist/*
+!dist/SHA256SUMS
+!dist/*.uf2
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+*.swp
