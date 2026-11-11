@@ -18,7 +18,9 @@ RP2350 版本无需主机守护进程，插上 USB 即用；代价是 USB 1.1 �
 
 > 当前版本：**v1.2.0**
 >
-> 已验证路径：**ImgBurn 刻录/Verify**、**Linux cdrecord / Kylin**。
+> 已验证路径：**ImgBurn 刻录/Verify**、**Linux cdrecord / Kylin**（v1.1 硬件基线）。
+>
+> **v1.2.0 已同步 Orange Pi 版的 CD-RW 协议修复并完成主机测试 + 固件构建，尚需在 Pico 2 实机复测。**
 >
 > Windows 自带“刻录光盘”仍不可用；Windows 下请使用 ImgBurn。详见 [已知限制](#已知限制)。
 
